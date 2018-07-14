@@ -50,7 +50,7 @@ class AppService:
 
         self.event_handlers = []
 
-        self.app = web.Application(loop=self.loop)
+        self.app = web.Application(loop=self.loop, client_max_size=1024**3)
         self.app.router.add_route("PUT", "/transactions/{transaction_id}",
                                   self._http_handle_transaction)
         self.app.router.add_route("GET", "/rooms/{alias}", self._http_query_alias)
